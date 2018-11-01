@@ -73,20 +73,24 @@ The API runs locally on docker containers. You can easily change the python vers
 
 
 ## 项目结构及编写方法
-1.采用的是docker镜像，docker内部装的是python3.4版本(如果没有docker-compose会安装不上)
-2.make start 执行的是/src/server.py，修改代码保存后会自动重启
-3.日志采用logging模块，书写格式见server.py
-```
-import logging
-logger = logging.getLogger(__name__)
+1. 采用的是docker镜像，docker内部装的是python3.4版本(如果没有docker-compose会安装不上)
+2. make start 执行的是/src/server.py，修改代码保存后会自动重启
+3. 日志采用logging模块，书写格式见server.py
 
-logger.debug("ENV debug=%s,server is listening at %s: %s" % (config.DEBUG,config.HOST,config.PORT))
-```
-4.路由模块在routes文件夹配置,比如里面有user.py，需要在该文件夹下的__init__.py中加入
-```
-from .user import USER_BLUEPRINT
-```
-5.具体的routes里的详细get，post等操作在相应的resources文件夹下书写，同样也需要在resources文件夹下__init__.py中引入相应的文件。
+  ```
+  import logging
+  logger = logging.getLogger(__name__)
+
+  logger.debug("ENV debug=%s,server is listening at %s: %s" % (config.DEBUG,config.HOST,config.PORT))
+  ```
+
+4. 由模块在routes文件夹配置,比如里面有user.py，需要在该文件夹下的__init__.py中加入
+
+  ```
+  from .user import USER_BLUEPRINT
+  ```
+
+5. 具体的routes里的详细get，post等操作在相应的resources文件夹下书写，同样也需要在resources文件夹下__init__.py中引入相应的文件。
 采用json格式输出
 
 
